@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/resilience4j/json-schema/bulkhead-configuration.json",
+  "title": "Resilience4j Bulkhead Configuration",
+  "description": "JSON Schema for Resilience4j bulkhead and thread pool bulkhead configuration properties.",
+  "type": "object",
+  "properties": {
+    "resilience4j": {
+      "type": "object",
+      "properties": {
+        "bulkhead": {
+          "type": "object",
+          "properties": {
+            "configs": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/BulkheadConfig"
+              }
+            },
+            "instances": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/BulkheadInstance"
+              }
+            }
+          }
+        },
+        "thread-pool-bulkhead": {
+          "type": "object",
+          "properties": {
+            "configs": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/ThreadPoolBulkheadConfig"
+              }
+            },
+            "instances": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/ThreadPoolBulkheadInstance"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "BulkheadConfig": {
+      "type": "object",
+      "properties": {
+        "maxConcurrentCalls": {
+          "type": "integer",
+          "default": 25,
+          "description": "Maximum number of concurrent calls allowed."
+        },
+        "maxWaitDuration": {
+          "type": "string",
+          "default": "0ms",
+          "description": "Maximum wait duration for a call to acquire permission."
+        },
+        "writableStackTraceEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether BulkheadFullException has a writable stack trace."
+        }
+      }
+    },
+    "BulkheadInstance": {
+      "allOf": [
+        { "$ref": "#/$defs/BulkheadConfig" },
+        {
+          "type": "object",
+          "properties": {
+            "baseConfig": {
+              "type": "string",
+              "description": "Name of a shared configuration to inherit from."
+            }
+          }
+        }
+      ]
+    },
+    "ThreadPoolBulkheadConfig": {
+      "type": "object",
+      "properties": {
+        "maxThreadPoolSize": {
+          "type": "integer",
+          "description": "Maximum thread pool size."
+        },
+        "coreThreadPoolSize": {
+          "type": "integer",
+          "description": "Core thread pool size."
+        },
+        "queueCapacity": {
+          "type": "integer",
+          "default": 100,
+          "description": "Capacity of the queue."
+        },
+        "keepAliveDuration": {
+          "type": "string",
+          "default": "20ms",
+          "description": "Duration for which excess threads stay alive."
+        },
+        "writableStackTraceEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether BulkheadFullException has a writable stack trace."
+        }
+      }
+    },
+    "ThreadPoolBulkheadInstance": {
+      "allOf": [
+        { "$ref": "#/$defs/ThreadPoolBulkheadConfig" },
+        {
+          "type": "object",
+          "properties": {
+            "baseConfig": {
+              "type": "string",
+              "description": "Name of a shared configuration to inherit from."
+            }
+          }
+        }
+      ]
+    }
+  }
+}

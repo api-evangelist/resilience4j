@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/resilience4j/json-schema/rate-limiter-configuration.json",
+  "title": "Resilience4j Rate Limiter Configuration",
+  "description": "JSON Schema for Resilience4j rate limiter configuration properties.",
+  "type": "object",
+  "properties": {
+    "resilience4j": {
+      "type": "object",
+      "properties": {
+        "ratelimiter": {
+          "type": "object",
+          "properties": {
+            "configs": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/RateLimiterConfig"
+              }
+            },
+            "instances": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/RateLimiterInstance"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "RateLimiterConfig": {
+      "type": "object",
+      "properties": {
+        "limitForPeriod": {
+          "type": "integer",
+          "default": 50,
+          "description": "Number of permissions available during one limit refresh period."
+        },
+        "limitRefreshPeriod": {
+          "type": "string",
+          "default": "500ns",
+          "description": "Duration of a limit refresh period."
+        },
+        "timeoutDuration": {
+          "type": "string",
+          "default": "5s",
+          "description": "Default wait time for permission."
+        },
+        "registerHealthIndicator": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to register a health indicator."
+        },
+        "eventConsumerBufferSize": {
+          "type": "integer",
+          "default": 100,
+          "description": "Size of the event consumer buffer."
+        },
+        "writableStackTraceEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether RequestNotPermitted has a writable stack trace."
+        }
+      }
+    },
+    "RateLimiterInstance": {
+      "allOf": [
+        { "$ref": "#/$defs/RateLimiterConfig" },
+        {
+          "type": "object",
+          "properties": {
+            "baseConfig": {
+              "type": "string",
+              "description": "Name of a shared configuration to inherit from."
+            }
+          }
+        }
+      ]
+    }
+  }
+}

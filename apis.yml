@@ -39,7 +39,19 @@ apis:
       - Bulkhead
       - Java
       - Microservices
-    properties: []
+    properties:
+      - type: JSONSchema
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/resilience4j/refs/heads/main/json-schema/circuit-breaker-configuration.json
+      - type: JSONSchema
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/resilience4j/refs/heads/main/json-schema/retry-configuration.json
+      - type: JSONSchema
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/resilience4j/refs/heads/main/json-schema/rate-limiter-configuration.json
+      - type: JSONSchema
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/resilience4j/refs/heads/main/json-schema/bulkhead-configuration.json
 common:
   - type: Website
     url: https://resilience4j.readme.io/

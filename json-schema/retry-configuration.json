@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/resilience4j/json-schema/retry-configuration.json",
+  "title": "Resilience4j Retry Configuration",
+  "description": "JSON Schema for Resilience4j retry configuration properties.",
+  "type": "object",
+  "properties": {
+    "resilience4j": {
+      "type": "object",
+      "properties": {
+        "retry": {
+          "type": "object",
+          "properties": {
+            "configs": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/RetryConfig"
+              }
+            },
+            "instances": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/RetryInstance"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "RetryConfig": {
+      "type": "object",
+      "properties": {
+        "maxAttempts": {
+          "type": "integer",
+          "default": 3,
+          "description": "Maximum number of retry attempts."
+        },
+        "waitDuration": {
+          "type": "string",
+          "default": "500ms",
+          "description": "Fixed wait duration between retry attempts."
+        },
+        "enableExponentialBackoff": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether exponential backoff is enabled."
+        },
+        "exponentialBackoffMultiplier": {
+          "type": "number",
+          "default": 2,
+          "description": "Multiplier for exponential backoff."
+        },
+        "enableRandomizedWait": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether randomized wait is enabled."
+        },
+        "randomizedWaitFactor": {
+          "type": "number",
+          "default": 0.5,
+          "description": "Randomization factor for wait duration."
+        },
+        "retryExceptions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of exception class names that trigger a retry."
+        },
+        "ignoreExceptions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of exception class names that are ignored."
+        },
+        "failAfterMaxAttempts": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to throw MaxRetriesExceededException after all attempts."
+        }
+      }
+    },
+    "RetryInstance": {
+      "allOf": [
+        { "$ref": "#/$defs/RetryConfig" },
+        {
+          "type": "object",
+          "properties": {
+            "baseConfig": {
+              "type": "string",
+              "description": "Name of a shared configuration to inherit from."
+            }
+          }
+        }
+      ]
+    }
+  }
+}

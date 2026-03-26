@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/resilience4j/json-schema/circuit-breaker-configuration.json",
+  "title": "Resilience4j Circuit Breaker Configuration",
+  "description": "JSON Schema for Resilience4j circuit breaker configuration properties used in application.yml or application.properties.",
+  "type": "object",
+  "properties": {
+    "resilience4j": {
+      "type": "object",
+      "properties": {
+        "circuitbreaker": {
+          "type": "object",
+          "properties": {
+            "configs": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/CircuitBreakerConfig"
+              }
+            },
+            "instances": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/CircuitBreakerInstance"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "CircuitBreakerConfig": {
+      "type": "object",
+      "properties": {
+        "slidingWindowType": {
+          "type": "string",
+          "enum": ["COUNT_BASED", "TIME_BASED"],
+          "default": "COUNT_BASED",
+          "description": "Type of sliding window used to record calls."
+        },
+        "slidingWindowSize": {
+          "type": "integer",
+          "default": 100,
+          "description": "Size of the sliding window."
+        },
+        "minimumNumberOfCalls": {
+          "type": "integer",
+          "default": 100,
+          "description": "Minimum number of calls before the circuit breaker can calculate the error rate."
+        },
+        "failureRateThreshold": {
+          "type": "number",
+          "default": 50,
+          "description": "Failure rate threshold in percentage above which the circuit breaker opens."
+        },
+        "slowCallRateThreshold": {
+          "type": "number",
+          "default": 100,
+          "description": "Slow call rate threshold in percentage."
+        },
+        "slowCallDurationThreshold": {
+          "type": "string",
+          "default": "60s",
+          "description": "Duration threshold above which a call is considered slow."
+        },
+        "waitDurationInOpenState": {
+          "type": "string",
+          "default": "60s",
+          "description": "Duration the circuit breaker stays open before transitioning to half-open."
+        },
+        "permittedNumberOfCallsInHalfOpenState": {
+          "type": "integer",
+          "default": 10,
+          "description": "Number of permitted calls in half-open state."
+        },
+        "automaticTransitionFromOpenToHalfOpenEnabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to automatically transition from open to half-open."
+        },
+        "recordExceptions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of exception class names that are recorded as failures."
+        },
+        "ignoreExceptions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of exception class names that are ignored."
+        },
+        "writableStackTraceEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether CallNotPermittedException has a writable stack trace."
+        }
+      }
+    },
+    "CircuitBreakerInstance": {
+      "allOf": [
+        { "$ref": "#/$defs/CircuitBreakerConfig" },
+        {
+          "type": "object",
+          "properties": {
+            "baseConfig": {
+              "type": "string",
+              "description": "Name of a shared configuration to inherit from."
+            }
+          }
+        }
+      ]
+    }
+  }
+}
