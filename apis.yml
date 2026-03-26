@@ -1,10 +1,20 @@
 aid: resilience4j
 name: Resilience4j
 description: >-
-  Resilience4j is a lightweight fault tolerance library for Java designed for functional programming with circuit breaker, retry, rate limiter, and bulkhead patterns.
+  Resilience4j is a lightweight fault tolerance library designed for Java 8 and
+  functional programming, providing higher-order functions to enhance functional
+  interfaces with Circuit Breaker, Rate Limiter, Retry, Bulkhead, and TimeLimiter
+  patterns. Designed as a replacement for Netflix Hystrix.
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
+  - Fault Tolerance
+  - Resilience
+  - Circuit Breaker
+  - Rate Limiter
+  - Retry
+  - Bulkhead
+  - Java
   - Microservices
 url: >-
   https://raw.githubusercontent.com/api-evangelist/resilience4j/refs/heads/main/apis.yml
@@ -15,14 +25,36 @@ apis:
   - aid: resilience4j:resilience4j
     name: Resilience4j
     description: >-
-      Resilience4j is a lightweight fault tolerance library for Java designed for functional programming with circuit breaker, retry, rate limiter, and bulkhead patterns.
-    humanURL: https://github.com/api-evangelist/resilience4j
+      Resilience4j is a lightweight fault tolerance library designed for Java 8
+      and functional programming, providing higher-order functions to enhance
+      functional interfaces with Circuit Breaker, Rate Limiter, Retry, Bulkhead,
+      and TimeLimiter patterns.
+    humanURL: https://resilience4j.readme.io/
     tags:
+      - Fault Tolerance
+      - Resilience
+      - Circuit Breaker
+      - Rate Limiter
+      - Retry
+      - Bulkhead
+      - Java
       - Microservices
     properties: []
 common:
   - type: Website
-    url: https://github.com/api-evangelist/resilience4j
+    url: https://resilience4j.readme.io/
+  - type: Documentation
+    url: https://resilience4j.readme.io/docs
+  - type: Getting Started
+    url: https://resilience4j.readme.io/docs/getting-started
+  - type: GitHub
+    url: https://github.com/resilience4j/resilience4j
+  - type: GitHub Org
+    url: https://github.com/resilience4j
+  - type: Releases
+    url: https://github.com/resilience4j/resilience4j/releases
+  - type: Issues
+    url: https://github.com/resilience4j/resilience4j/issues
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
