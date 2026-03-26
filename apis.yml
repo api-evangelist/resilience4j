@@ -1,0 +1,28 @@
+aid: resilience4j
+name: Resilience4j
+description: >-
+  Resilience4j is a lightweight fault tolerance library for Java designed for functional programming with circuit breaker, retry, rate limiter, and bulkhead patterns.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Microservices
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/resilience4j/refs/heads/main/apis.yml
+created: '2026-03-26'
+modified: '2026-03-26'
+specificationVersion: '0.19'
+apis:
+  - aid: resilience4j:resilience4j
+    name: Resilience4j
+    description: >-
+      Resilience4j is a lightweight fault tolerance library for Java designed for functional programming with circuit breaker, retry, rate limiter, and bulkhead patterns.
+    humanURL: https://github.com/api-evangelist/resilience4j
+    tags:
+      - Microservices
+    properties: []
+common:
+  - type: Website
+    url: https://github.com/api-evangelist/resilience4j
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
