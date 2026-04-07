@@ -8,14 +8,14 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Fault Tolerance
-  - Resilience
-  - Circuit Breaker
-  - Rate Limiter
-  - Retry
   - Bulkhead
+  - Circuit Breaker
+  - Fault Tolerance
   - Java
   - Microservices
+  - Rate Limiter
+  - Resilience
+  - Retry
 url: >-
   https://raw.githubusercontent.com/api-evangelist/resilience4j/refs/heads/main/apis.yml
 created: '2026-03-26'
@@ -31,14 +31,14 @@ apis:
       and TimeLimiter patterns.
     humanURL: https://resilience4j.readme.io/
     tags:
-      - Fault Tolerance
-      - Resilience
-      - Circuit Breaker
-      - Rate Limiter
-      - Retry
       - Bulkhead
+      - Circuit Breaker
+      - Fault Tolerance
       - Java
       - Microservices
+      - Rate Limiter
+      - Resilience
+      - Retry
     properties:
       - type: JSONSchema
         url: >-
