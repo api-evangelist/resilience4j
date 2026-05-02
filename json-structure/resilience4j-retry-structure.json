@@ -1,0 +1,72 @@
+{
+  "name": "Resilience4j Retry Configuration",
+  "description": "JSON structure for Resilience4j Retry configuration.",
+  "fields": [
+    {
+      "name": "resilience4j.retry.configs",
+      "type": "map<string, RetryConfig>",
+      "description": "Named shared retry configuration profiles."
+    },
+    {
+      "name": "resilience4j.retry.instances",
+      "type": "map<string, RetryInstance>",
+      "description": "Named retry instances."
+    },
+    {
+      "name": "maxAttempts",
+      "type": "integer",
+      "default": 3,
+      "description": "Maximum number of attempts (including initial call)."
+    },
+    {
+      "name": "waitDuration",
+      "type": "duration",
+      "default": "500ms",
+      "description": "Fixed wait duration between retries."
+    },
+    {
+      "name": "enableExponentialBackoff",
+      "type": "boolean",
+      "default": false,
+      "description": "Enable exponential backoff between retries."
+    },
+    {
+      "name": "exponentialBackoffMultiplier",
+      "type": "number",
+      "default": 2.0,
+      "description": "Backoff multiplier for exponential backoff."
+    },
+    {
+      "name": "enableRandomizedWait",
+      "type": "boolean",
+      "default": false,
+      "description": "Enable randomized wait duration."
+    },
+    {
+      "name": "randomizedWaitFactor",
+      "type": "number",
+      "default": 0.5,
+      "description": "Randomization factor for randomized wait."
+    },
+    {
+      "name": "retryExceptions",
+      "type": "array<string>",
+      "description": "Exception classes that trigger a retry."
+    },
+    {
+      "name": "ignoreExceptions",
+      "type": "array<string>",
+      "description": "Exception classes that are not retried."
+    },
+    {
+      "name": "retryOnResultPredicate",
+      "type": "string",
+      "description": "Class name of a Predicate<T> that determines if a result triggers a retry."
+    },
+    {
+      "name": "baseConfig",
+      "type": "string",
+      "description": "Shared configuration name to inherit from (instances only)."
+    }
+  ]
+}

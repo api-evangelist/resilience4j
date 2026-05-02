@@ -1,0 +1,39 @@
+{
+  "title": "Resilience4j Circuit Breaker Configuration Example",
+  "description": "Spring Boot application.yml configuration for a circuit breaker protecting an external payment service",
+  "language": "yaml",
+  "example": {
+    "resilience4j": {
+      "circuitbreaker": {
+        "configs": {
+          "default": {
+            "slidingWindowType": "COUNT_BASED",
+            "slidingWindowSize": 10,
+            "minimumNumberOfCalls": 5,
+            "failureRateThreshold": 50,
+            "slowCallRateThreshold": 100,
+            "slowCallDurationThreshold": "2s",
+            "waitDurationInOpenState": "30s",
+            "permittedNumberOfCallsInHalfOpenState": 3,
+            "automaticTransitionFromOpenToHalfOpenEnabled": true
+          }
+        },
+        "instances": {
+          "paymentService": {
+            "baseConfig": "default",
+            "failureRateThreshold": 30,
+            "waitDurationInOpenState": "60s",
+            "recordExceptions": [
+              "java.io.IOException",
+              "java.util.concurrent.TimeoutException"
+            ],
+            "ignoreExceptions": [
+              "com.example.BusinessException"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "notes": "The paymentService instance inherits from the default config but overrides failure threshold and wait duration. IOException and TimeoutException are recorded as failures; BusinessException is ignored."
+}

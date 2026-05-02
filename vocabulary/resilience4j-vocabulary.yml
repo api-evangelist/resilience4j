@@ -1,0 +1,144 @@
+vocabulary:
+  name: Resilience4j Vocabulary
+  description: Domain vocabulary for the Resilience4j fault tolerance library for Java.
+  version: "1.0"
+  created: "2026-05-02"
+  terms:
+    - term: CircuitBreaker
+      definition: >-
+        A resilience pattern that prevents cascading failures by monitoring call
+        success/failure rates and opening the circuit (blocking calls) when
+        thresholds are exceeded. Implements three states: CLOSED, OPEN, HALF_OPEN.
+      states:
+        - CLOSED
+        - OPEN
+        - HALF_OPEN
+        - DISABLED
+        - FORCED_OPEN
+      related: ["faultTolerance", "RateLimiter", "Bulkhead"]
+
+    - term: CircuitBreakerState
+      definition: The current operational state of a circuit breaker.
+      values:
+        - CLOSED: "Normal operation; calls are permitted"
+        - OPEN: "Circuit is open; calls are blocked and fail fast"
+        - HALF_OPEN: "Limited calls permitted to test if service has recovered"
+        - DISABLED: "Circuit breaker is disabled; all calls permitted"
+        - FORCED_OPEN: "Circuit is forced open; no calls permitted"
+      related: ["CircuitBreaker"]
+
+    - term: SlidingWindow
+      definition: >-
+        The mechanism used by a circuit breaker to record and analyze call
+        outcomes. Can be COUNT_BASED (last N calls) or TIME_BASED (last N seconds).
+      values:
+        - COUNT_BASED
+        - TIME_BASED
+      related: ["CircuitBreaker"]
+
+    - term: FailureRateThreshold
+      definition: >-
+        The percentage of failed calls that triggers the circuit breaker to
+        open. Default: 50%. Calculated over the sliding window.
+      related: ["CircuitBreaker", "SlidingWindow"]
+
+    - term: SlowCallRateThreshold
+      definition: >-
+        The percentage of calls exceeding slowCallDurationThreshold that
+        triggers the circuit to open. Default: 100%.
+      related: ["CircuitBreaker"]
+
+    - term: RateLimiter
+      definition: >-
+        A resilience pattern that controls the rate of calls to a service,
+        allowing a maximum number of calls within a refresh period to prevent
+        overloading downstream systems.
+      configuration:
+        - limitForPeriod
+        - limitRefreshPeriod
+        - timeoutDuration
+      related: ["CircuitBreaker", "Bulkhead"]
+
+    - term: Bulkhead
+      definition: >-
+        A resilience pattern that limits the number of concurrent calls to a
+        service, preventing resource exhaustion. Supports SemaphoreBulkhead
+        (concurrent call limit) and ThreadPoolBulkhead.
+      types:
+        - SemaphoreBulkhead
+        - ThreadPoolBulkhead
+      related: ["CircuitBreaker", "RateLimiter"]
+
+    - term: Retry
+      definition: >-
+        A resilience pattern that automatically retries failed calls with
+        configurable wait duration, maximum attempts, and backoff strategies
+        (fixed, exponential, randomized).
+      configuration:
+        - maxAttempts
+        - waitDuration
+        - exponentialBackoffMultiplier
+        - retryExceptions
+        - ignoreExceptions
+      related: ["CircuitBreaker", "TimeLimiter"]
+
+    - term: TimeLimiter
+      definition: >-
+        A resilience pattern that sets a timeout duration for calls to external
+        services. Cancels running futures when the timeout is exceeded.
+      configuration:
+        - timeoutDuration
+        - cancelRunningFuture
+      related: ["Retry", "CircuitBreaker"]
+
+    - term: Cache
+      definition: >-
+        A resilience pattern that stores successful call results in a cache
+        to avoid redundant downstream calls. Based on javax.cache (JCache).
+      related: ["performance", "resilience"]
+
+    - term: Decorator
+      definition: >-
+        A higher-order function in Resilience4j that wraps a functional
+        interface (Supplier, Function, Runnable, etc.) with resilience behavior.
+      related: ["functionalProgramming"]
+
+    - term: FallbackMethod
+      definition: >-
+        An alternative method called when a resilience4j-protected call fails
+        after all retries are exhausted or the circuit is open.
+      related: ["Retry", "CircuitBreaker"]
+
+    - term: Event
+      definition: >-
+        A recorded occurrence in a resilience component's lifecycle
+        (e.g., circuit state change, retry attempt, rate limit exceeded).
+        Published via event consumer API and Spring Boot Actuator endpoints.
+      related: ["CircuitBreaker", "Retry", "monitoring"]
+
+    - term: SpringBootActuator
+      definition: >-
+        Spring Boot management endpoints that Resilience4j exposes for monitoring
+        and management: /actuator/circuitbreakers, /actuator/retries,
+        /actuator/ratelimiters, /actuator/bulkheads.
+      endpoints:
+        - "/actuator/circuitbreakers"
+        - "/actuator/retries"
+        - "/actuator/ratelimiters"
+        - "/actuator/bulkheads"
+        - "/actuator/health"
+      related: ["monitoring", "Spring Boot"]
+
+    - term: Micrometer
+      definition: >-
+        Application metrics facade used by Resilience4j to export resilience
+        pattern metrics to monitoring systems like Prometheus, Grafana, and
+        Datadog.
+      related: ["monitoring", "metrics"]
+
+    - term: FaultTolerance
+      definition: >-
+        The ability of a system to continue operating correctly in the presence
+        of failures of some of its components. Resilience4j implements fault
+        tolerance through circuit breakers, retries, rate limiters, and bulkheads.
+      related: ["CircuitBreaker", "Retry", "RateLimiter", "Bulkhead"]

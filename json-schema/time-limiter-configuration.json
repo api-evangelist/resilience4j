@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/resilience4j/json-schema/time-limiter-configuration.json",
+  "title": "Resilience4j Time Limiter Configuration",
+  "description": "JSON Schema for Resilience4j TimeLimiter configuration properties used in application.yml or application.properties.",
+  "type": "object",
+  "properties": {
+    "resilience4j": {
+      "type": "object",
+      "properties": {
+        "timelimiter": {
+          "type": "object",
+          "properties": {
+            "configs": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/TimeLimiterConfig"
+              }
+            },
+            "instances": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/TimeLimiterInstance"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "TimeLimiterConfig": {
+      "type": "object",
+      "properties": {
+        "timeoutDuration": {
+          "type": "string",
+          "default": "1s",
+          "description": "Configurable timeout duration. Defaults to 1 second."
+        },
+        "cancelRunningFuture": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to cancel the running Future after a timeout. Defaults to true."
+        }
+      }
+    },
+    "TimeLimiterInstance": {
+      "allOf": [
+        { "$ref": "#/$defs/TimeLimiterConfig" },
+        {
+          "type": "object",
+          "properties": {
+            "baseConfig": {
+              "type": "string",
+              "description": "Name of a shared configuration to inherit from."
+            }
+          }
+        }
+      ]
+    }
+  }
+}

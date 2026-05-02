@@ -1,0 +1,86 @@
+{
+  "name": "Resilience4j Circuit Breaker Configuration",
+  "description": "JSON structure for Resilience4j CircuitBreaker configuration.",
+  "fields": [
+    {
+      "name": "resilience4j.circuitbreaker.configs",
+      "type": "map<string, CircuitBreakerConfig>",
+      "description": "Named shared configuration profiles."
+    },
+    {
+      "name": "resilience4j.circuitbreaker.instances",
+      "type": "map<string, CircuitBreakerInstance>",
+      "description": "Named circuit breaker instances."
+    },
+    {
+      "name": "slidingWindowType",
+      "type": "string",
+      "enum": ["COUNT_BASED", "TIME_BASED"],
+      "default": "COUNT_BASED",
+      "description": "Type of sliding window used to record calls."
+    },
+    {
+      "name": "slidingWindowSize",
+      "type": "integer",
+      "default": 100,
+      "description": "Size of the sliding window (calls or seconds)."
+    },
+    {
+      "name": "minimumNumberOfCalls",
+      "type": "integer",
+      "default": 100,
+      "description": "Minimum calls before error rate calculation."
+    },
+    {
+      "name": "failureRateThreshold",
+      "type": "number",
+      "default": 50,
+      "description": "Failure rate percentage to open the circuit."
+    },
+    {
+      "name": "slowCallRateThreshold",
+      "type": "number",
+      "default": 100,
+      "description": "Slow call rate percentage to open the circuit."
+    },
+    {
+      "name": "slowCallDurationThreshold",
+      "type": "duration",
+      "default": "60s",
+      "description": "Duration after which a call is considered slow."
+    },
+    {
+      "name": "waitDurationInOpenState",
+      "type": "duration",
+      "default": "60s",
+      "description": "Time the circuit stays open before trying half-open."
+    },
+    {
+      "name": "permittedNumberOfCallsInHalfOpenState",
+      "type": "integer",
+      "default": 10,
+      "description": "Number of calls permitted in half-open state."
+    },
+    {
+      "name": "automaticTransitionFromOpenToHalfOpenEnabled",
+      "type": "boolean",
+      "default": false,
+      "description": "Enable automatic transition from OPEN to HALF_OPEN."
+    },
+    {
+      "name": "recordExceptions",
+      "type": "array<string>",
+      "description": "Exception classes counted as failures."
+    },
+    {
+      "name": "ignoreExceptions",
+      "type": "array<string>",
+      "description": "Exception classes that are ignored."
+    },
+    {
+      "name": "baseConfig",
+      "type": "string",
+      "description": "Shared configuration name to inherit from (instances only)."
+    }
+  ]
+}
