@@ -94,7 +94,7 @@ common:
     url: https://github.com/resilience4j/resilience4j
   - type: GitHubOrganization
     url: https://github.com/resilience4j
-  - type: Releases
+  - type: ReleaseNotes
     url: https://github.com/resilience4j/resilience4j/releases
   - type: Issues
     url: https://github.com/resilience4j/resilience4j/issues
