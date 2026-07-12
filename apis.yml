@@ -84,6 +84,8 @@ apis:
         url: >-
           https://raw.githubusercontent.com/api-evangelist/resilience4j/refs/heads/main/vocabulary/resilience4j-vocabulary.yml
 common:
+  - type: DomainSecurity
+    url: security/resilience4j-domain-security.yml
   - type: Website
     url: https://resilience4j.readme.io/
   - type: Documentation
