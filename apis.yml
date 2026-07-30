@@ -9,7 +9,19 @@ description: >-
   Micrometer, Prometheus, and Dropwizard Metrics. Used in production by Deutsche
   Telekom (400M+ requests/day), PlayStation Network, AOL, and Auto Trader Group.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Freemium
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/resilience4j.png
 tags:
   - Bulkhead
   - Circuit Breaker
