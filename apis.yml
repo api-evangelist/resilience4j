@@ -9,6 +9,17 @@ description: >-
   Micrometer, Prometheus, and Dropwizard Metrics. Used in production by Deutsche
   Telekom (400M+ requests/day), PlayStation Network, AOL, and Auto Trader Group.
 type: Index
+deliveryModel:
+  model: unknown
+  open_source: false
+  commercial: false
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - none
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: unknown
