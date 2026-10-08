@@ -112,6 +112,12 @@ apis:
         url: >-
           https://raw.githubusercontent.com/api-evangelist/resilience4j/refs/heads/main/vocabulary/resilience4j-vocabulary.yml
 common:
+  - type: Plans
+    url: plans/resilience4j-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/resilience4j-rate-limits.yml
+  - type: FinOps
+    url: finops/resilience4j-finops.yml
   - type: DomainSecurity
     url: security/resilience4j-domain-security.yml
   - type: Website
